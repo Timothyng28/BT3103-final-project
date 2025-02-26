@@ -10,9 +10,7 @@
         <h1 class = "text-6xl font-bold select-none">Countdown to the start of IHG24/25</h1>
         <br>
         <br>
-        <!--
         <CountDown />
-        -->
       </div>
     </div>
   </template>
@@ -20,7 +18,7 @@
   <script setup>
   import { onMounted } from 'vue';
   import { loadSlim } from 'tsparticles-slim';
-  // import CountDown from './Countdown.vue';
+  import CountDown from './Countdown.vue';
   
   const particlesInit = async (engine) => {
     await loadSlim(engine);
