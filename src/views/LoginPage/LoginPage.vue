@@ -11,8 +11,8 @@
       emits:['loggedIn'],
       methods: {
         handleLogin() {
-          this.$emit('loggedIn', true);
-          this.$router.push('/');
+          this.$emit('loggedIn');
+          this.$router.push('/'); // redirects to home page
         }
       }
     }
