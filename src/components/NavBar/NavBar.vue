@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar bg-[#fc105B] sticky top-0 z-50">
+    <div class="navbar bg-[#fc105B] sticky top-0 z-50 rounded-b-lg">
       <div class="navbar-start">
         <div class="dropdown">
           <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">

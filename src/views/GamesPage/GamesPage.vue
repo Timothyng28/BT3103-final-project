@@ -1,5 +1,5 @@
 <template>
-    <Carousell/>
+    <!--<Carousell/>-->
   <br>
   <br>
   <div class = "flex justify-evenly gap-30">
