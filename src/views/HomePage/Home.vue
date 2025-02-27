@@ -7,7 +7,7 @@
         :options="particlesOptions"
       />
       <div class="select-none relative z-20 text-center text-white -mt-40 justify-center items-center flex flex-col">
-        <h1 class = "text-6xl font-bold">Countdown to the start of IHG24/25</h1>
+        <h1 class = "text-6xl font-bold">Countdown to IHG24/25</h1>
         <br>
         <br>
         <CountDown />
