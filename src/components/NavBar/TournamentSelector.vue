@@ -1,9 +1,9 @@
 <template>
     <div class="dropdown dropdown-hover">
-      <div tabindex="0" class="px-2 py-1 cursor-pointer hover:bg-base-100 rounded-md">IHG24/25</div>
+      <div tabindex="0" class="px-2 py-1 cursor-pointer hover:bg-gray-400 rounded-md text-black">IHG24/25</div>
       <ul
         tabindex="0"
-        class="dropdown-content menu bg-base-100 rounded-box w-auto p-2 shadow-sm"
+        class="dropdown-content menu bg-base-200 rounded-box w-auto p-2 shadow-sm"
       >
         <ul class="menu bg-base-200 rounded-box w-56">
           <li>

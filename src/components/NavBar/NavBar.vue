@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar bg-base-100 sticky top-0 z-50">
+    <div class="navbar bg-[#fc105B] sticky top-0 z-50">
       <div class="navbar-start">
         <div class="dropdown">
           <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -22,28 +22,28 @@
             tabindex="0"
             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <li><router-link to="/games" active-class="!text-pink-600 font-bold">Games</router-link></li>
-            <li><a>Schedule</a></li>
-            <li><router-link to="/residences"> Residences </router-link></li>
+            <li><router-link to="/games" class = "text-black" active-class="!text-white font-bold">Games</router-link></li>
+            <li><a class = "text-black">Schedule</a></li>
+            <li><router-link to="/residences" class = "text-black" active-class="!text-white font-bold"> Residences </router-link></li>
           </ul>
           
   
         </div>
-        <RouterLink to="/" class="btn btn-ghost text-xl" >App name?</RouterLink>
-        <TournamentSelector />
+        <RouterLink to="/" class="click-pointer text-xl text-black pl-5 pr-5" >App name?</RouterLink>
+        <TournamentSelector class = "bg-white rounded-xl"/>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
-          <li><router-link to="/games" active-class="!text-pink-600 font-bold">Games</router-link></li>
-          <li><a>Schedule</a></li>
-          <li><router-link to="/residences">Residences</ router-link></li>
+          <li><router-link to="/games" class = "text-black" active-class="!text-white font-bold">Games</router-link></li>
+          <li><a class = "text-black">Schedule</a></li>
+          <li><router-link to="/residences" class = "text-black" active-class="!text-white font-bold">Residences</ router-link></li>
         </ul>
       </div>
       <div class="navbar-end">
         <RouterLink
           v-if="!loggedIn && $route.path !== '/login'"
           to="/login"
-          class="btn"
+          class="btn bg-white text-black border-[#e5e5e5]"
           >Login
           </RouterLink>
           <div v-else-if="loggedIn" class="dropdown dropdown-end">
@@ -85,6 +85,6 @@
     }
   };
   </script>
-  
+
   <style scoped></style>
   
