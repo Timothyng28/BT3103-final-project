@@ -6,9 +6,8 @@
         <div class="modal-box">
           <h3 class="text-lg font-bold">{{ modalData.title }}</h3>
           <p class="py-4">Event Date: {{ modalData.date }}</p>
-          
+          <ModalContent />
         </div>
-        <!-- This makes the backdrop clickable to close the modal -->
         <form method="dialog" class="modal-backdrop">
           <button>Close</button>
         </form>
@@ -20,6 +19,7 @@
 import { ref } from 'vue'
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import ModalContent from './ModalContent.vue'
 
 const modalData = ref({
   title: '',
