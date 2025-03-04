@@ -25,6 +25,12 @@ const routes = [
         path: '/residences',
         name: 'ResidencesPage',
         component: () => import('@/views/ResidencesPage/ResidencesPage.vue')
+    }, 
+    {
+        path: '/match/:id',
+        name: 'MatchPage',
+        component: () => import('@/views/MatchPage/MatchPage.vue'),
+        props: true
     }
 ]
 
