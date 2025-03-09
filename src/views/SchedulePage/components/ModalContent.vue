@@ -75,7 +75,7 @@ const schedules = [
         description: "KR vs KE Female Volleyball (Finals)",
       },
       {
-        time: "13:00",
+        time: "09:00",
         location: "UTSH 2",
         description: "SH vs TH Female Volleyball (3rd Place Match)"
       }
@@ -90,15 +90,20 @@ const selectedSchedule = computed(() => {
 
 // Group events by location using a computed property
 const groupedEvents = computed(() => {
-  return selectedSchedule.value.events.reduce((groups, event) => {
+  const groups = selectedSchedule.value.events.reduce((curr, event) => {
     // If the location doesn't exist in the groups object, create an empty array
-    if (!groups[event.location]) {
-      groups[event.location] = [];
+    if (!curr[event.location]) {
+      curr[event.location] = [];
     }
     // Push the event into the array for the location
-    groups[event.location].push(event);
-    return groups;
+    curr[event.location].push(event);
+    return curr;
   }, {});
+  // Sort each group's events by time
+  for (const location in groups) {
+    groups[location].sort((a, b) => a.time.localeCompare(b.time));
+  }
+  return groups;
 });
 
 </script>
