@@ -1,3 +1,5 @@
+<!-- THIS COMPONENT NOT CURRENTLY IN USE I THINK JIC UR CONFUSED BY IT -->
+
 <template>
     <div class="carousel w-full h-40">
       <div id="slide1" class="carousel-item relative w-full">
