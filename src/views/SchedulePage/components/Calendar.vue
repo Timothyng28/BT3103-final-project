@@ -2,7 +2,7 @@
     <div>
       <FullCalendar :options="calendarOptions" />
   
-      <dialog id="eventModal" class="modal" ref="modalDialog">
+      <dialog id="eventModal" class="modal" ref="modalDialog" @close="handleDialogClose">
         <div class="modal-box">
           <h3 class="text-lg font-bold">{{ modalData.title }}</h3>
           <p class="py-4">Event Date: {{ modalData.date }}</p>
@@ -51,4 +51,11 @@ const calendarOptions = ref({
   },
   fixedWeekCount: false
 })
+
+// Uncheck all radio inputs when the modal is closed
+const handleDialogClose = () => {
+  document.querySelectorAll('input[name="my-accordion-3"]').forEach(input => {
+    input.checked = false;
+  });
+}
 </script>
