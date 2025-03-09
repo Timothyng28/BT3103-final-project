@@ -1,22 +1,20 @@
 <template>
-  <div v-if="selectedSchedule">
-    {{props.date}}
-    <div v-for="(event, index) in selectedSchedule.events"
-        :key="index"
+  <div>
+    <!-- Loop through each location group in the groupedEvents object -->
+    <div v-for="(events, location) in groupedEvents"
+        :key="location"
         class="collapse collapse-plus bg-base-100 border border-base-300">
         <input type="radio" name="my-accordion-3" />
         <div class="collapse-title font-semibold">
-          {{ event.title }}
+          {{ location }}
         </div>
         <div class="collapse-content text-sm">
-          {{ event.description }}
+          <!-- Loop through each event in the current location group -->
+          <div v-for="(event, idx) in events" :key="idx">
+            {{ event.time }}: {{ event.description }}
+          </div>
         </div>
       </div>
-  </div>
-  <div v-else>
-    <div class="collapse collapse-arrow border-base-300 bg-base-100 border border-base-300 border">
-      <div class="collapse-title font-semibold">No events scheduled for this day</div>
-    </div>
   </div>
 </template>
 
@@ -31,24 +29,24 @@ const props = defineProps({
   }
 });
 
-// Hard coded in for now
+// Hard coded in for now retrieve data from firestore in future
 const schedules = [
   {
     date: "2025-03-01",
     events: [
       {
         time: "10:00",
-        title: "Tennis Court 1",
+        location: "Tennis Court 1",
         description: "TH vs EH Male Tennis (Finals)",
       },
       {
         time: "11:00",
-        title: "Field 1",
+        location: "Field 1",
         description: "EH vs RH Male Football (Group Stage)",
       },
       {
         time: "12:00",
-        title: "MPSH 1",
+        location: "MPSH 1",
         description: "KR vs SH Female Badminton (Semi-Finals)",
       },
     ],
@@ -58,27 +56,49 @@ const schedules = [
     events: [
       {
         time: "10:00",
-        title: "Tennis Court 2",
+        location: "Tennis Court 2",
         description: "TH vs EH Female Tennis (Finals)",
       },
       {
         time: "11:00",
-        title: "Field 2",
+        location: "Field 2",
         description: "EH vs RH Female Football (Group Stage)",
       },
       {
         time: "12:00",
-        title: "MPSH 2",
+        location: "MPSH 2",
         description: "KR vs SH Male Badminton (Semi-Finals)",
       },
+      {
+        time: "12:00",
+        location: "UTSH 2",
+        description: "KR vs KE Female Volleyball (Finals)",
+      },
+      {
+        time: "13:00",
+        location: "UTSH 2",
+        description: "SH vs TH Female Volleyball (3rd Place Match)"
+      }
     ],
   },
 ];
 
 // Find the schedule that matches the provided prop date
-
 const selectedSchedule = computed(() => {
   return schedules.find((schedule) => schedule.date === props.date);
+});
+
+// Group events by location using a computed property
+const groupedEvents = computed(() => {
+  return selectedSchedule.value.events.reduce((groups, event) => {
+    // If the location doesn't exist in the groups object, create an empty array
+    if (!groups[event.location]) {
+      groups[event.location] = [];
+    }
+    // Push the event into the array for the location
+    groups[event.location].push(event);
+    return groups;
+  }, {});
 });
 
 </script>
