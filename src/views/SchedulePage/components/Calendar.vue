@@ -6,7 +6,7 @@
         <div class="modal-box">
           <h3 class="text-lg font-bold">{{ modalData.title }}</h3>
           <p class="py-4">Event Date: {{ modalData.date }}</p>
-          <ModalContent />
+          <ModalContent :date="selectedDate"/>
         </div>
         <form method="dialog" class="modal-backdrop">
           <button>Close</button>
@@ -33,11 +33,7 @@ const openModal = () => {
   }
 }
 
-const closeModal = () => {
-  if (modalDialog.value) {
-    modalDialog.value.close() 
-  }
-}
+var selectedDate = null;
 
 const calendarOptions = ref({
   plugins: [dayGridPlugin],
@@ -50,6 +46,7 @@ const calendarOptions = ref({
     // Set the modal data and open the modal
     modalData.value.title = info.event.title
     modalData.value.date = info.event.startStr
+    selectedDate = info.event.startStr;
     openModal()
   },
   fixedWeekCount: false
