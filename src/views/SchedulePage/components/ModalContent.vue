@@ -1,38 +1,40 @@
 <template>
   <div>
     <!-- Loop through each location group in the groupedEvents object -->
-    <div v-for="(events, location) in groupedEvents"
-        :key="location"
-        class="collapse collapse-plus bg-base-100 border border-base-300">
-        <input type="radio" name="my-accordion-3" />
-        <div class="collapse-title font-semibold">
-          {{ location }}
-        </div>
-        <div class="collapse-content text-sm">
-          <!-- Loop through each event in the current location group -->
-          <div v-for="(event, idx) in events" :key="idx">
-            {{ event.time }}: {{ event.description }}
-          </div>
+    <div
+      v-for="(events, location) in groupedEvents"
+      :key="location"
+      class="collapse collapse-plus bg-base-100 border border-base-300"
+    >
+      <input type="radio" name="my-accordion-3" />
+      <div class="collapse-title font-semibold">
+        {{ location }}
+      </div>
+      <div class="collapse-content text-sm">
+        <!-- Loop through each event in the current location group -->
+        <div v-for="(event, idx) in events" :key="idx">
+          {{ event.time }}: {{ event.description }} <!-- can replace with button to redirect to match page in future -->
         </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 // Takes in date from Calendar Component
 const props = defineProps({
   date: {
     type: String,
     required: true,
-  }
+  },
 });
 
 // Hard coded in for now retrieve data from firestore in future
 const schedules = [
   {
-    date: "2025-03-01",
+    date: "01-03-2025",
     events: [
       {
         time: "10:00",
@@ -52,7 +54,7 @@ const schedules = [
     ],
   },
   {
-    date: '2025-03-15',
+    date: "15-03-2025",
     events: [
       {
         time: "10:00",
@@ -77,8 +79,8 @@ const schedules = [
       {
         time: "09:00",
         location: "UTSH 2",
-        description: "SH vs TH Female Volleyball (3rd Place Match)"
-      }
+        description: "SH vs TH Female Volleyball (3rd Place Match)",
+      },
     ],
   },
 ];
@@ -90,6 +92,10 @@ const selectedSchedule = computed(() => {
 
 // Group events by location using a computed property
 const groupedEvents = computed(() => {
+  // Placeholder of empty schedules until calendar has mounted and fetched data
+  if (!selectedSchedule.value || !selectedSchedule.value.events) {
+    return {};
+  }
   const groups = selectedSchedule.value.events.reduce((curr, event) => {
     // If the location doesn't exist in the groups object, create an empty array
     if (!curr[event.location]) {
@@ -105,5 +111,4 @@ const groupedEvents = computed(() => {
   }
   return groups;
 });
-
 </script>
