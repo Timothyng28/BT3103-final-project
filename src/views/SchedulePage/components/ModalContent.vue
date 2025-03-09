@@ -21,6 +21,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 
 // Takes in date from Calendar Component
 const props = defineProps({
@@ -75,8 +76,9 @@ const schedules = [
 ];
 
 // Find the schedule that matches the provided prop date
-const selectedSchedule = schedules.find(
-  (schedule) => schedule.date === props.date
-);
+
+const selectedSchedule = computed(() => {
+  return schedules.find((schedule) => schedule.date === props.date);
+});
 
 </script>
