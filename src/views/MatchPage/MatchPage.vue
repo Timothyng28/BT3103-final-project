@@ -1,7 +1,7 @@
-<!-- // assess match id = 1 with domain.com/match/1 -->
+<!-- // assess match page for match with id = 1 using 'domain.com/match/1 -->
 
 <template>
-    <div class="relative w-screen flex flex-col items-center gap-6 px-10 pb-10 overflow-hidden h-screen">
+    <div class="relative w-screen flex flex-col items-center gap-6 px-10 pb-10 overflow-hidden h-screen bg-[#0C0C0D]">
         <div class="flex flex-col w-full justify-center items-center shrink-0">
             <div class="p-2">
                 <h1>Match Page (placeholder Match ID: {{ id }})</h1>
@@ -14,7 +14,8 @@
                     <p 
                         :class="[
                             'text-5xl', 
-                            items.match_details.team1_score > items.match_details.team2_score ? 'text-red-500' : 'text-white'
+                            (items.match_details.match_status == 'Completed') 
+                            && (items.match_details.team1_score <= items.match_details.team2_score) ? 'text-white' : 'text-red-500' 
                         ]"
                     >{{ items.match_details.team1_score }}</p>
                 </div>
@@ -39,7 +40,8 @@
                     <p 
                         :class="[
                             'text-5xl', 
-                            items.match_details.team2_score > items.match_details.team1_score ? 'text-red-500' : 'text-white'
+                            (items.match_details.match_status == 'Completed') 
+                            && (items.match_details.team2_score <= items.match_details.team1_score) ? 'text-white' : 'text-red-500' 
                         ]"
                     >{{ items.match_details.team2_score }}</p>
                 </div>
@@ -111,7 +113,7 @@
                         "team2_name": "CAPT",
                         "team1_score": 25,
                         "team2_score": 24,
-                        "match_status": "Completed",
+                        "match_status": 'Completed',
                         "match_datetime": new Date("2025-03-03T18:00:00+08:00"), 
                         "match_location": "RC4 MPSH",
                     },
@@ -123,3 +125,9 @@
         }
     }
 </script>
+
+<style>
+body {
+  color: white;
+}
+</style>
