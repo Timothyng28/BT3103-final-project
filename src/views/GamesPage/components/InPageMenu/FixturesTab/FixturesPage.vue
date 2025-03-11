@@ -15,6 +15,7 @@
     components: {
       OngoingMatches,
       UpcomingMatches,
-    }
+    },
   }
+
   </script>
