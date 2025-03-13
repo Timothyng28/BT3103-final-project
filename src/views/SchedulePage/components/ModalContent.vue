@@ -33,70 +33,68 @@ const props = defineProps({
 
 // Hard coded in for now retrieve data from firestore in future
 const schedules = [
-  {
-    date: "01-03-2025",
-    events: [
       {
         time: "10:00",
         location: "Tennis Court 1",
         description: "TH vs EH Male Tennis (Finals)",
+        date: "01-03-2025"
       },
       {
         time: "11:00",
         location: "Field 1",
         description: "EH vs RH Male Football (Group Stage)",
+        date: "01-03-2025"
       },
       {
         time: "12:00",
         location: "MPSH 1",
         description: "KR vs SH Female Badminton (Semi-Finals)",
+        date: "01-03-2025"
       },
-    ],
-  },
-  {
-    date: "15-03-2025",
-    events: [
       {
         time: "10:00",
         location: "Tennis Court 2",
         description: "TH vs EH Female Tennis (Finals)",
+        date: "15-03-2025"
       },
       {
         time: "11:00",
         location: "Field 2",
         description: "EH vs RH Female Football (Group Stage)",
+        date: "15-03-2025"
       },
       {
         time: "12:00",
         location: "MPSH 2",
         description: "KR vs SH Male Badminton (Semi-Finals)",
+        date: "15-03-2025"
       },
       {
         time: "12:00",
         location: "UTSH 2",
         description: "KR vs KE Female Volleyball (Finals)",
+        date: "15-03-2025"
       },
       {
         time: "09:00",
         location: "UTSH 2",
         description: "SH vs TH Female Volleyball (3rd Place Match)",
+        date: "15-03-2025" 
       },
-    ],
-  },
 ];
 
 // Find the schedule that matches the provided prop date
 const selectedSchedule = computed(() => {
-  return schedules.find((schedule) => schedule.date === props.date);
+  return schedules.filter((event) => event.date === props.date);
 });
 
 // Group events by location using a computed property
 const groupedEvents = computed(() => {
   // Placeholder of empty schedules until calendar has mounted and fetched data
-  if (!selectedSchedule.value || !selectedSchedule.value.events) {
-    return {};
+  if (selectedSchedule.value.length < 1) {
+    return [];
   }
-  const groups = selectedSchedule.value.events.reduce((curr, event) => {
+  const groups = selectedSchedule.value.reduce((curr, event) => {
     // If the location doesn't exist in the groups object, create an empty array
     if (!curr[event.location]) {
       curr[event.location] = [];
