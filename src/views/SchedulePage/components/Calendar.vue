@@ -26,7 +26,7 @@ import ModalContent from "./ModalContent.vue";
 
 // temp stand in dates to replace with firestore query in future
 function fetch() {
-  return [{ date: "01-03-2025" }, { date: "15-03-2025" }];
+  return [{ id: "match_001", date: "01-03-2025" }, { id: "match_001", date: "15-03-2025" }]
 }
 
 const modalData = ref({
