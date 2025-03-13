@@ -73,6 +73,9 @@ async function fetchEvents() {
       return curr;
     }, []);
     calendarOptions.value.events = formattedDates;
+    // TODO: add checking logic for live events
+    // await nextTick();
+    // checkLiveEvent();
   } catch (error) {
     console.error("Error fetching events:", error);
   }
