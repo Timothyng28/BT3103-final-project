@@ -102,13 +102,16 @@ const handleDialogClose = () => {
 .fc-day-today {
   position: relative;
   font-weight: bold;
+  border: 2px solid #ff9800;
 }
 
-.fc-day-today::after {
-  content: "";
+*/ modify script to assign class if there is a game currently going on */
+
+.pulsing::after {
+  content: "  ● LIVE";
+  color: red;
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  border: 2px solid #ff9800;
   animation: pulse 1.5s infinite;
 }
 </style>
