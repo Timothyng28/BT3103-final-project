@@ -1,0 +1,18 @@
+{
+    "users (as documents)": [
+      {
+        "id": "A1234567A",
+        "name": "Timothy",
+        "email": "Timothy@gmail.com",
+        "role": "Scorekeeper",
+        "assigned_matches": ["IHG_2324-match_001", "ICG_2324-match_003"]
+      },
+      {
+        "id": "A7654321A",
+        "name": "Tim",
+        "email": "Tim@gmail.com",
+        "role": "O-comm"
+      }
+    ]
+  }
+  
