@@ -26,7 +26,10 @@ import ModalContent from "./ModalContent.vue";
 
 // temp stand in dates to replace with firestore query in future
 function fetch() {
-  return [{ id: "match_001", date: "01-03-2025" }, { id: "match_001", date: "15-03-2025" }]
+  return [
+    { id: "match_001", date: "01-03-2025" },
+    { id: "match_001", date: "15-03-2025" },
+  ];
 }
 
 const modalData = ref({
@@ -87,3 +90,25 @@ const handleDialogClose = () => {
   });
 };
 </script>
+
+<style>
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 5px #ff9800; }
+  50% { box-shadow: 0 0 15px #ff9800; }
+  100% { box-shadow: 0 0 5px #ff9800; }
+}
+
+.fc-day-today {
+  position: relative;
+  font-weight: bold;
+}
+
+.fc-day-today::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 2px solid #ff9800;
+  animation: pulse 1.5s infinite;
+}
+</style>
