@@ -92,7 +92,7 @@ const selectedSchedule = computed(() => {
 const groupedEvents = computed(() => {
   // Placeholder of empty schedules until calendar has mounted and fetched data
   if (selectedSchedule.value.length < 1) {
-    return [];
+    return {};
   }
   const groups = selectedSchedule.value.reduce((curr, event) => {
     // If the location doesn't exist in the groups object, create an empty array
