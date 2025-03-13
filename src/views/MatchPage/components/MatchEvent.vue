@@ -1,6 +1,7 @@
 <template>
     <div class="bg-[#6C6A6A] rounded-lg p-4 grid items-center">
         <div class="grid grid-cols-[auto_1fr_auto_1fr_auto] w-full items-center gap-4">
+            <!-- TODO: clean up UI such that score column is centralised regardless of width of content of other columns-->
             <div class="w-auto whitespace-nowrap text-left">{{items.match_event_details.minute}}'</div>
             <div class="flex-grow text-center">{{items.match_event_details.event_player}}</div>
             <div class="w-auto whitespace-nowrap text-center">{{items.match_event_details.team1_score}} - {{items.match_event_details.team2_score}}</div>

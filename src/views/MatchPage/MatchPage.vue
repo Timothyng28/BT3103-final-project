@@ -51,11 +51,10 @@
             </div>
         </div>
         <div class="flex flex-row justify-center gap-10 w-full flex-1 min-h-0">
-            <!-- TODO: make this div take up the remaining height of view port-->
             <div class = "bg-[#272727] flex flex-col w-3/4 py-4 px-10 rounded-lg items-center gap-6">
                 <h2>Match Event</h2>
                 <div class="flex flex-col w-full gap-4 overflow-y-auto flex-1 min-h-0">
-                    <!-- TODO: make this a scrollable div-->
+                    <!-- TODO: make this based on query from backend-->
                     <!-- <div v-for="event in data.match_events" :key="event"> -->
                     <MatchEvent :id=1 />
                     <MatchEvent :id=2 />
@@ -73,6 +72,7 @@
             </div>
             <div class = "bg-[#272727] flex flex-col w-1/4 p-10 gap-8 rounded-lg items-center">
                 <p> Teams </p>
+                 <!-- TODO: link to team page-->
                 <div class="bg-[#6C6A6A] flex flex-col w-full items-center rounded-lg">
                     <div class="p-4 w-full">
                         <img :src="RC4Logo" alt="RC4 Logo" class="h-24 w-full min-w-16" />
