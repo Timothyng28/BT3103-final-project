@@ -23,7 +23,7 @@
             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li><router-link to="/games" class = "text-black" active-class="!text-white font-bold">Games</router-link></li>
-            <li><a class = "text-black">Schedule</a></li>
+            <li><router-link to="/schedule" class = "text-black" active-class="!text-white font-bold">Schedule</router-link></li>
             <li><router-link to="/residences" class = "text-black" active-class="!text-white font-bold"> Residences </router-link></li>
           </ul>
           
@@ -35,7 +35,7 @@
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
           <li><router-link to="/games" class = "text-black" active-class="!text-white font-bold">Games</router-link></li>
-          <li><a class = "text-black">Schedule</a></li>
+          <li><router-link to="/schedule" class = "text-black" active-class="!text-white font-bold">Schedule</router-link></li>
           <li><router-link to="/residences" class = "text-black" active-class="!text-white font-bold">Residences</ router-link></li>
         </ul>
       </div>
