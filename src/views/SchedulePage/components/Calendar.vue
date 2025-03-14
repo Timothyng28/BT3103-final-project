@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick} from "vue";
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import ModalContent from "./ModalContent.vue";
@@ -27,8 +27,9 @@ import ModalContent from "./ModalContent.vue";
 // temp stand in dates to replace with firestore query in future
 function fetch() {
   return [
-    { id: "match_001", date: "01-03-2025" },
-    { id: "match_001", date: "15-03-2025" },
+    { id: "match_001", date: "01-03-2025", start_time: "10:00", end_time: "12:00" },
+    { id: "match_002", date: "15-03-2025", start_time: "12:00", end_time: "14:00" },
+    { id: "match_003", date: "14-03-2025", start_time: "10:00", end_time: "23:59" },
   ];
 }
 
@@ -60,6 +61,29 @@ const calendarOptions = ref({
   fixedWeekCount: false,
 });
 
+function checkLiveEvent() {
+  const now = new Date();
+  const today = now.toISOString().split("T")[0];
+  const currentTime = now.toTimeString().slice(0, 5);
+
+  // Check if there is a live event happening now
+  const hasLiveEvent = calendarOptions.value.events.some(event =>  {
+      console.log(event);
+      return event.date === today &&
+      event.start_time <= currentTime &&
+      event.end_time >= currentTime;
+  }
+  );
+
+  console.log(hasLiveEvent);
+
+  // Add pulsing animation to today's date if there is a live event
+  if (hasLiveEvent) {
+    console.log(document.querySelector(".fc-day-today"));
+    document.querySelector(".fc-day-today").classList.add("pulsing");
+  }
+}
+
 // fetch events from firestore
 async function fetchEvents() {
   try {
@@ -69,13 +93,17 @@ async function fetchEvents() {
       curr.push({
         date: event.date.split("-").reverse().join("-"),
         display: "background",
+        start_time: event.start_time,
+        end_time: event.end_time,
       });
       return curr;
     }, []);
     calendarOptions.value.events = formattedDates;
-    // TODO: add checking logic for live events
-    // await nextTick();
-    // checkLiveEvent();
+
+    // check for live events
+    await nextTick(); // allows calendar to fully render before checking
+    checkLiveEvent();
+
   } catch (error) {
     console.error("Error fetching events:", error);
   }
@@ -95,26 +123,26 @@ const handleDialogClose = () => {
 </script>
 
 <style>
+ 
+ @keyframes pulse {
+   0% { box-shadow: 0 0 5px #ff9800; }
+   50% { box-shadow: 0 0 15px #ff9800; }
+   100% { box-shadow: 0 0 5px #ff9800; }
+ }
+ 
+ .fc-day-today {
+   position: relative;
+   font-weight: bold;
+ }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 5px #ff9800; }
-  50% { box-shadow: 0 0 15px #ff9800; }
-  100% { box-shadow: 0 0 5px #ff9800; }
-}
+ /* add pulsing animation if there is an ongoing match */
 
-.fc-day-today {
-  position: relative;
-  font-weight: bold;
-  border: 2px solid #ff9800;
-}
-
-*/ modify script to assign class if there is a game currently going on */
-
-.pulsing::after {
+ .pulsing::after {
   content: "  ● LIVE";
   color: red;
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  animation: pulse 1.5s infinite;
-}
-</style>
+   position: absolute;
+   border: 1px solid #ff9800;
+   top: 0; left: 0; right: 0; bottom: 0;
+   animation: pulse 1.5s infinite;
+ }
+ </style>
