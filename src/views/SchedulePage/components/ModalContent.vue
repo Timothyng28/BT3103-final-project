@@ -13,7 +13,7 @@
       <div class="collapse-content text-sm">
         <!-- Loop through each event in the current location group -->
         <div v-for="(event, idx) in events" :key="idx">
-          {{ event.time }}: {{ event.description }} <!-- can replace with button to redirect to match page in future -->
+          {{ event.start_time }}-{{ event.end_time }}: {{ event.description }} <!-- can replace with button to redirect to match page in future -->
         </div>
       </div>
     </div>
@@ -34,49 +34,57 @@ const props = defineProps({
 // Hard coded in for now retrieve data from firestore in future
 const schedules = [
       {
-        time: "10:00",
+        start_time: "10:00",
+        end_time: "12:00",
         location: "Tennis Court 1",
         description: "TH vs EH Male Tennis (Finals)",
         date: "01-03-2025"
       },
       {
-        time: "11:00",
+        start_time: "11:00",
+        end_time: "12:00",
         location: "Field 1",
         description: "EH vs RH Male Football (Group Stage)",
         date: "01-03-2025"
       },
       {
-        time: "12:00",
+        start_time: "12:00",
+        end_time: "14:00",
         location: "MPSH 1",
         description: "KR vs SH Female Badminton (Semi-Finals)",
         date: "01-03-2025"
       },
       {
-        time: "10:00",
+        start_time: "10:00",
+        end_time: "12:00",
         location: "Tennis Court 2",
         description: "TH vs EH Female Tennis (Finals)",
         date: "15-03-2025"
       },
       {
-        time: "11:00",
+        start_time: "11:00",
+        end_time: "12:00",
         location: "Field 2",
         description: "EH vs RH Female Football (Group Stage)",
         date: "15-03-2025"
       },
       {
-        time: "12:00",
+        start_time: "12:00",
+        end_time: "14:00",
         location: "MPSH 2",
         description: "KR vs SH Male Badminton (Semi-Finals)",
         date: "15-03-2025"
       },
       {
-        time: "12:00",
+        start_time: "12:00",
+        end_time: "14:00",
         location: "UTSH 2",
         description: "KR vs KE Female Volleyball (Finals)",
         date: "15-03-2025"
       },
       {
-        time: "09:00",
+        start_time: "09:00",
+        end_time: "11:00",
         location: "UTSH 2",
         description: "SH vs TH Female Volleyball (3rd Place Match)",
         date: "15-03-2025" 
@@ -105,7 +113,7 @@ const groupedEvents = computed(() => {
   }, {});
   // Sort each group's events by time
   for (const location in groups) {
-    groups[location].sort((a, b) => a.time.localeCompare(b.time));
+    groups[location].sort((a, b) => a.start_time.localeCompare(b.start_time));
   }
   return groups;
 });
