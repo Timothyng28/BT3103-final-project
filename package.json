@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.8",
+    "firebase": "^11.4.0",
     "gsap": "^3.12.7",
     "locomotive-scroll": "^4.1.4",
     "tsparticles-slim": "^2.12.0",
