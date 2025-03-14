@@ -75,11 +75,8 @@ function checkLiveEvent() {
   }
   );
 
-  console.log(hasLiveEvent);
-
   // Add pulsing animation to today's date if there is a live event
   if (hasLiveEvent) {
-    console.log(document.querySelector(".fc-day-today"));
     document.querySelector(".fc-day-today").classList.add("pulsing");
   }
 }
